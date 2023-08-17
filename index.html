@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Results summary component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; position:fixed; bottom:0;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    :root {
+      --LIGHT-RED: hsla(0, 100%, 67%);
+      --ORAN-YEL: hsl(39, 100%, 56%);
+      --TEAL-GREEN: hsl(166, 100%, 37%);
+      --COBALT-BLUE: hsl(234, 85%, 45%);
+      --WHITE: hsl(0, 0%, 100%);
+      --PALE-BLUE: hsl(221, 100%, 96%);
+      --LAVENDER: hsl(241, 100%, 89%);
+      --DARK-GREY: hsl(224, 30%, 27%);
+
+      /* || GRADIENT CLR */
+
+      --BG-GRD-LIGHTBLUE: hsl(252, 100%, 67%);
+      --BG-GRD-ROYALBLUE: hsl(241, 81%, 54%);
+
+      /* || CIRCLE GRD CLR */
+
+      --CIRCLE-GRD-VIOLET: hsla(256, 72%, 46%, 1);
+      --CIRCLE-GRD-BLUE: hsla(241, 72%, 46%, 0);
+    }
+
+    html {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 18px;
+      color: var(--LAVENDER);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .result {
+      background: var(--WHITE);
+      width: 375px;
+    }
+
+    .result-card {
+      padding: 1.8rem;
+      background: linear-gradient( var(--BG-GRD-LIGHTBLUE), var(--BG-GRD-ROYALBLUE) );
+      text-align: center;
+      border-bottom-right-radius: 40px;
+      border-bottom-left-radius: 40px;
+    }
+
+    .your-result {
+      margin:0; 
+      font-size: 1.1rem;
+    }
+
+    .result-circle {
+      
+      padding: 1rem;
+      height:100px;
+      width: 100px;
+      background: linear-gradient( var(--CIRCLE-GRD-VIOLET), var(--CIRCLE-GRD-BLUE) );
+      border: 1px solid var(--CIRCLE-GRD-BLUE);
+      border-top-color: var(--CIRCLE-GRD-VIOLET);
+      border-bottom: transparent;
+      border-radius: 150px;
+      margin: 5px auto;
+      margin-top: 1.2rem;
+    }
+
+    .result-circle > * {
+      margin-top: 0;
+    }
+
+    .result-circle h1 {
+      margin-bottom: 0;
+      font-size: 3rem;
+      color: var(--WHITE) !important;
+    }
+
+    .result-circle p {
+      color: hsla(241, 100%, 89%, 0.461);
+    }
+
+    .result-card__h3 {
+      color: var(--WHITE);
+      margin-bottom: 5px;
+      font-size: 1.4rem;
+    }
+
+    .result-card p {
+      margin-top: 0;
+    }
+
+    /* || SUMMARY */
+
+    .breakdown-container {      
+      margin: 0 1.5rem;
+    }
+
+    .breakdown-h2 {
+      margin: 1.3rem 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--DARK-GREY);
+    }
+
+    .breakdown-summary-tabs p {
+      margin: 1rem;
+    }
+
+    .breakdown-summary-tabs {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      border-radius: 15px;
+    }
+
+    .summary-img {
+      transform: translateY(20%);
+      margin-right: 10px;
+    }
+
+    .reaction-tab {
+      color: var(--LIGHT-RED);
+      background-color:hsla(0, 100%, 67%, 0.08);
+    }
+    .memory-tab {
+      color: var(--ORAN-YEL);
+      background-color: hsl(39, 100%, 56%, 0.08);
+    }
+    .verbal-tab {
+      color: var(--TEAL-GREEN);
+      background-color: hsl(166, 100%, 37%, 0.08);
+    }
+    .visual-tab {
+      color: var(--COBALT-BLUE);
+      background-color: hsl(234, 85%, 45%, 0.08);
+    }
+
+    .breakdown-summary-tabs__score {
+      color: hsl(241, 35%, 73%);
+    }
+
+    .breakdown-summary-tabs__score span {
+      color: var(--DARK-GREY);
+      font-weight: 800;
+    }
+
+    .breakdown-btn {
+      padding: 0.8rem;
+      width: 100%;
+      border:none;
+      border-radius: 30px;
+      background-color: var(--DARK-GREY);
+      color: var(--WHITE);
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: 'Hanken Grotesk', sans-serif;
+      margin: 0.7rem 0;
+    }
+
+    .breakdown-btn:hover {
+      background: linear-gradient( var(--BG-GRD-LIGHTBLUE), var(--BG-GRD-ROYALBLUE) );
+    }
+
+    @media (min-width: 1440px) {
+      .result {
+        display: flex;
+        width: 690px;
+        border-radius: 40px;
+        box-shadow: 10px 10px 20px -10px hsla(241, 81%, 54%, 0.2);;
+      }
+
+      .result-card {
+        border-radius: 40px;
+      }
+
+      .result-card, .breakdown-container {
+        width: 50%;
+      }
+
+      .result-circle {
+        width: 160px;
+        height: 160px;
+        margin-top: 1.4rem;
+        
+      }
+
+      .result-circle > h1 {
+        margin-top: 1.5rem;
+        font-size: 3.7rem;
+      }
+
+      .result-card__h3 {
+        font-size: 1.5rem;;
+      }
+
+      .breakdown-h2 {
+        margin-top: 0;
+      }
+
+      .breakdown-container {
+       padding: 1.1rem;
+       padding-top: 1.8rem;
+      }
+
+      .breakdown-summary-tabs {
+        height:50px;
+        align-items: center;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="result">
+    <div class="result-card">
+      <p class="your-result">Your Result</p>
+      <div class="result-circle">
+        <h1>76</h1>
+        <p>of 100</p>
+      </div>
+      <h3 class="result-card__h3">Great</h3>
+      <p>You scored higher than 65% of the people who have taken these tests.</p>
+    </div>
+
+    <!-- || SUMMARY -->
+    <div class="breakdown-container">
+      <h2 class="breakdown-h2">Summary</h2>
+      <div class="breakdown-summary-tabs reaction-tab">
+        <p class="reaction-text breakdown-summary-tabs__text"><img src="./assets/images/icon-reaction.svg" alt="reaction" class="summary-img reaction-img"> Reaction</p>
+        <p class="breakdown-summary-tabs__score"><span>80</span> / 100</p>
+      </div>
+      <div class="breakdown-summary-tabs memory-tab">
+        <p class="memory-text breakdown-summary-tabs__text"><img src="./assets/images/icon-memory.svg" alt="memory" class="summary-img memory-img"> Memory</p>
+        <p class="breakdown-summary-tabs__score"><span>92</span> / 100</p>
+      </div>
+      <div class="breakdown-summary-tabs verbal-tab">
+        <p class="verbal-text breakdown-summary-tabs__text"><img src="./assets/images/icon-verbal.svg" alt="verbal" class="summary-img verbal-img"> Verbal</p>
+        <p class="breakdown-summary-tabs__score"><span>61</span> / 100</p>
+      </div>
+      <div class="breakdown-summary-tabs visual-tab">
+        <p class="visual-text breakdown-summary-tabs__text"><img src="./assets/images/icon-visual.svg" alt="visual" class="summary-img visual-img"> Visual</p>
+        <p class="breakdown-summary-tabs__score"><span>72</span> / 100</p>
+      </div>
+      <button class="breakdown-btn">Continue</button>
+    </div>
+  </div>
+  
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Tabebash</a>.
+  </div>
+</body>
+</html>
